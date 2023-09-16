@@ -9,6 +9,7 @@ def show_banner():
     \033[1;34m║\033[1;33m 1.CSMM\033[1;34m        ║
     \033[1;34m║\033[1;35m 2.CLS DATA\033[1;34m    ║
     \033[1;34m║\033[1;36m 3.ADD COIN\033[1;34m    ║
+    \033[1;34m║\033[1;31m 0.EXIT\033[1;34m        ║
     \033[1;34m╚═══════════════╝\033[1;37m
   """
   print(banner)
@@ -24,7 +25,8 @@ def dang_ky():
     print("\033[1;37m[+2000 Xu] \033[1;32mSuccess\033[1;37m")
     with open(file, 'w') as f:
         json.dump(data, f)
-    exit()
+    sleep(2)
+    ChonS()
 def account():
     with open(file, 'r') as f:
       data = json.load(f)
@@ -64,9 +66,7 @@ def yes_no():
     clear()
     tra_quay_so()
   elif x.lower() == 'n':
-    clear()
-    account()
-    exit()
+    pass
 def chon_so():
   clear()
   show_banner()
@@ -79,26 +79,30 @@ def chon_so():
     number = 1
   else:
     print("Lựa Chọn Không Hợp Lệ")
-    exit()
-  Tien_Choi =int(input("Nhập Số Xu Chơi: "))
-  if (money >= Tien_Choi and Tien_Choi != 0):
-    print("SUCCESS")
-  elif (money < Tien_Choi):
+    sleep(2)
+    tra_quay_so()
+  Tien_Choi = int(input("Nhập Số Xu Chơi: "))
+  if (money >= int(Tien_Choi) and int(Tien_Choi) != 0):
+    pass
+  elif (money < int(Tien_Choi)):
     print("Không Đủ Xu")
-    exit()
-  elif (Tien_Choi == 0):
+    sleep(2)
+    ChonS()
+  elif (int(Tien_Choi) == 0):
     print("0 Xu Chơi Cái gì ba ??")
-    exit()
+    sleep(2)
+    tra_quay_so()
   else:
     ("NHẬP SỐ !!!")
-    exit()
+    sleep(2)
+    tra_quay_so()
   return number, Tien_Choi
 def quay_so():
-  Tren = " ╔══════════╗"
-  Duoi = " ╚══════════╝"
+  Tren = "    ╔══════════╗"
+  Duoi = "    ╚══════════╝"
   Num = random.randint(1,99)
   Delay = 0.001
-  print("\033[1;34m   Quay Số\033[1;32m")
+  print("\033[1;34m      Quay Số\033[1;32m")
   print(Tren)
   while (Delay < 0.1):
     Num += 1 
@@ -106,9 +110,9 @@ def quay_so():
       Num = 1
     if (Delay < 0.1):
       if (Num < 10):
-        sys.stdout.write("\r ║ -> \033[1;33m0"+str(Num)+" \033[1;32m<- ║")
+        sys.stdout.write("\r    ║ -> \033[1;33m0"+str(Num)+" \033[1;32m<- ║")
       if (Num > 9):
-        sys.stdout.write("\r ║ -> \033[1;33m"+str(Num)+" \033[1;32m<- ║")
+        sys.stdout.write("\r    ║ -> \033[1;33m"+str(Num)+" \033[1;32m<- ║")
     sleep(Delay)
     Delay += 0.001
   print("\n"+Duoi+"\033[1;37m")
@@ -119,11 +123,11 @@ def tra_quay_so():
   if (number == 0 and Num % 2 == 0):
     print('Chúc Mừng Chiến Thắng: Chẵn')
     Tien_Choi = Tien_Choi
-    print("[+_+]+",Tien_Choi)
+    print("[+_+] +",Tien_Choi)
   elif (number == 1 and Num % 2 != 0):
     print('Chúc Mừng Chiến Thắng: Lẻ')
     Tien_Choi = Tien_Choi
-    print("[+_+]+",Tien_Choi)
+    print("[+_+] +",Tien_Choi)
   elif (number == 0 and Num % 2 != 0):
     print('Chúc May Mắn Lần Sau: Lẻ')
     Tien_Choi = -(Tien_Choi)
@@ -133,7 +137,7 @@ def tra_quay_so():
     Tien_Choi = -(Tien_Choi)
     print("[-_-]",Tien_Choi)
   else:
-    print("[SYS] LỖI XIN VUI LÒNG LH ADMIN!!")
+    print("LỖI !!")
   change_money(Tien_Choi)
   hien_money()
   yes_no()
@@ -143,21 +147,27 @@ def add_money():
   addc = int(input("NHẬP COIN+: "))
   change_money(addc)
   hien_money()
-  print("SUCCESS")
-  exit()
+  sleep(2)
+  ChonS()
 def ChonS():
+  clear()
+  show_banner()
   Chon = input("Chọn Chế Độ: ")
   if int(Chon) == 1:
     tra_quay_so()
   elif int(Chon) == 2:
     print("Success Delete Account")
     os.remove(file)
+    dang_ky()
   elif int(Chon) == 3:
     add_money()
+  elif int(Chon) == 0:
+    clear()
+    account()
+    exit()
   else:
+    sleep(1)
     print("Lựa Chọn Không Hợp Lệ")
-  ChonS()
-clear()
-show_banner()
+    ChonS()
 dang_ky()
 ChonS()
