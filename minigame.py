@@ -2,49 +2,65 @@ import random, os, json, sys, datetime
 from time import sleep
 
 file = "account.json"
+green = "\033[1;32m"; yellow = "\033[1;33m"
+white = "\033[1;37m"; red = "\033[1;31m"
+blue = "\033[1;34m"; pink = "\033[1;35m"
+grey = "\033[1;30m"; blue2 = "\033[1;36m"
+green2 = "\033[0;32m"
 def show_banner():
   banner=f"""
-    \033[1;34m╔═══════════════════════════╗
-    \033[1;34m║\033[1;32m         Minigames\033[1;34m         ║
-    \033[1;34m║\033[1;33m 1.CSMM        \033[1;36m3.MINE COIN\033[1;34m ║
-    \033[1;34m║\033[1;35m 2.CLS DATA    \033[1;31m0.EXIT\033[1;34m      ║
-    \033[1;34m╚═══════════════════════════╝\033[1;37m
+    {blue}╔═══════════════════════════╗
+    {blue}║{green}         Minigames{blue}         ║
+    {blue}║\033[1;33m 1.CSMM        {blue2}3.MINE COIN{blue} ║
+    {blue}║{pink} 2.CLS DATA    {red}0.EXIT{blue}      ║
+    {blue}╚═══════════════════════════╝{whiye}
   """
   print(banner)
   animation_tngang()
 def show_csmm():
-  csmm="""
-    \033[1;34m╔══════════════════════╗
-    \033[1;34m║\033[1;32m   CON SỐ MAY MẮN\033[1;34m     ║
-    \033[1;34m║\033[1;36m Tỉ Lệ:\033[1;37m x2.0         \033[1;34m ║
-    \033[1;34m╚══════════════════════╝\033[1;37m
+  csmm=f"""
+    {blue}╔══════════════════════╗
+    {blue}║{green}   CON SỐ MAY MẮN{blue}     ║
+    {blue}║{pink} Tỉ Lệ:{white} x2.0         {blue} ║
+    {blue}╚══════════════════════╝{white}
   """
   print(csmm)
   animation_tngang()
 def show_cls_data():
-  cls_data="""
-    \033[1;34m╔═══════════════════════╗
-    \033[1;34m║\033[1;35m     DELETE ACCOUNT\033[1;34m    ║
-    \033[1;34m║\033[1;36m Hãy suy nghĩ cẩn thận\033[1;34m ║
-    \033[1;34m╚═══════════════════════╝\033[1;37m
+  cls_data=f"""
+    {blue}╔═══════════════════════╗
+    {blue}║{pink}     DELETE ACCOUNT{blue}    ║
+    {blue}║{blue2} Hãy suy nghĩ cẩn thận{blue} ║
+    {blue}╚═══════════════════════╝{white}
   """
   print(cls_data)
   animation_tngang()
 def show_mine_coin():
-  coin="""
-    \033[1;34m╔════════════════════════════╗
-    \033[1;34m║\033[1;32m           ĐÀO XU\033[1;34m           ║
-    \033[1;34m║\033[1;36m Dựa vào sự may mắn của bạn \033[1;34m║
-    \033[1;34m╚════════════════════════════╝\033[1;37m
+  coin=f"""
+    {blue}╔════════════════════════════╗
+    {blue}║{green}           ĐÀO XU{blue}           ║
+    {blue}║{blue2} Dựa vào sự may mắn của bạn {blue}║
+    {blue}╚════════════════════════════╝{white}
   """
   print(coin)
   animation_tngang()
+def show_account():
+  with open(file, 'r') as f:
+      data = json.load(f)
+  username = data[0]["username"]
+  money = data[0]["money"]
+  account=f"""\r
+    {grey}╔═══════════════════
+    {grey}║ Name{white} : {pink}{username}
+    {grey}║ Money{white}: {money:,} {yellow}Xu
+    {grey}╚═══════════════════{white}"""
+  print(account)
 def animation_load():
-  v1 ="\r\033[0;32m[-->    ]";
-  v2 ="\r\033[0;32m[ -->   ]"; 
-  v3 ="\r\033[0;32m[  -->  ]";
-  v4 ="\r\033[0;32m[   --> ]";
-  v5 ="\r\033[0;32m[    -->]";
+  v1 =f"\r{green2}[-->    ]";
+  v2 =f"\r{green2}[ -->   ]"; 
+  v3 =f"\r{green2}[  -->  ]";
+  v4 =f"\r{green2}[   --> ]";
+  v5 =f"\r{green2}[    -->]";
   for i in range (5) :
 	  sys.stdout.write(v1);sleep(0.1)
 	  sys.stdout.write(v2);sleep(0.1)
@@ -53,9 +69,9 @@ def animation_load():
 	  sys.stdout.write(v5);sleep(0.1)
 def animation_tngang():
   for i in range(23) :
-    sys.stdout.write("\033[1;37m▂\033[1;31m▂")
+    sys.stdout.write(f"{white}▂{red}▂")
     sleep(0)
-  print("\n\033[1;37m")
+  print(f"{white}")
 def clear():
   os.system("cls" if os.name == "nt" else "clear")
 def time_set():
@@ -65,12 +81,12 @@ def time_set():
   return formatted_time
 def dang_ky():
   if not os.path.isfile(file):
-    print("\033[1;34mCreate Account\033[1;37m")
-    username = input("\033[1;37mAccount: ")
+    print(f"{blue}Create Account{white}")
+    username = input(f"{white}Account:{pink} ")
     data = [
       {"username": username, "money": 2000}
     ]
-    print("\033[1;37m[+2000 Xu] \033[1;32mSuccess\033[1;37m")
+    print(f"{white}[+2000 {yellow}Xu{white}] {green}Success{white}")
     with open(file, 'w') as f:
         json.dump(data, f)
     animation_load()
@@ -80,8 +96,8 @@ def account():
       data = json.load(f)
     username = data[0]["username"]
     money = data[0]["money"]
-    print(f"\033[1;37mAccount: \033[1;35m{username}\033[1;37m")
-    print(f"Money: {money} \033[1;33mXu\033[1;37m")
+    print(f"{white}Account: {pink}{username}{white}")
+    print(f"Money: {money} {yellow}Xu{white}")
     return money
 def tra_du_lieu():
   with open(file, 'r') as f:
@@ -107,16 +123,16 @@ def hien_money():
   with open(file, 'r') as f:
       data = json.load(f)
   money = data[0]["money"]
-  print(f"Money: {money} \033[1;33mXu\033[1;37m")
+  print(f"Money: {money:,} {yellow}Xu{white}")
 def yes_no_csmm():
-  x = input('Tiếp Tục (Y/n): ')
+  x = input(f'Tiếp Tục ({red}Y{white}/{blue}n{white}): ')
   if x.lower() == 'y':
     clear()
     tra_quay_so()
   elif x.lower() == 'n':
     ChonS()
 def yes_no_mine_coin():
-  x = input('Tiếp Tục (Y/n): ')
+  x = input(f'Tiếp Tục ({red}Y{white}/{blue}n{white}): ')
   if x.lower() == 'y':
     clear()
     mine_coin()
@@ -125,9 +141,13 @@ def yes_no_mine_coin():
 def chon_so():
   clear()
   show_csmm()
-  account()
+  show_account()
   money = tra_du_lieu()
-  number = input("Chọn Chẵn or lẻ (C/l): ")
+  if money < 0:
+    print("BẠN ĐANG ÂM XU !!!")
+    animation_load()
+    ChonS()
+  number = input(f"Chọn {red}Chẵn {white}or {blue}lẻ {white}(C/l): ")
   if number.lower() == 'c':
     number = 0
   elif number.lower() == 'l':
@@ -138,28 +158,38 @@ def chon_so():
     print("Lựa Chọn Không Hợp Lệ")
     animation_load()
     tra_quay_so()
-  Tien_Choi = int(input("Nhập Số Xu Chơi: "))
-  if (money >= int(Tien_Choi) and int(Tien_Choi) != 0):
-    pass
-  elif (money < int(Tien_Choi)):
-    print("Không Đủ Xu")
-    animation_load()
-    ChonS()
-  elif (int(Tien_Choi) == 0):
-    print("0 Xu Chơi Cái gì ba ??")
-    animation_load()
-    tra_quay_so()
+  Tien_Choi = input(f"Nhập Số {yellow}Xu {white}Chơi: ")
+  if Tien_Choi.isdigit():
+    int(Tien_Choi)
+    if (int(Tien_Choi) < 0):
+      print("Không Thể Cược Xu Âm")
+      animation_load()
+      tra_quay_so()
+    if (money >= int(Tien_Choi) and int(Tien_Choi) != 0):
+      pass
+    elif (money < int(Tien_Choi)):
+      print("Không Đủ Xu")
+      animation_load()
+      ChonS()
+    elif (int(Tien_Choi) == 0):
+      print("0 Xu Chơi Cái gì ba ??")
+      animation_load()
+      tra_quay_so()
+    else:
+      print("NHẬP SỐ !!!")
+      animation_load()
+      tra_quay_so()
   else:
-    ("NHẬP SỐ !!!")
+    print("NHẬP SỐ !!!")
     animation_load()
     tra_quay_so()
-  return number, Tien_Choi
+  return number, int(Tien_Choi)
 def quay_so():
   Tren = "    ╔══════════╗"
   Duoi = "    ╚══════════╝"
   Num = random.randint(1,99)
   Delay = 0.001
-  print("\033[1;34m      Quay Số\033[1;32m")
+  print(f"{blue}      Quay Số{green}")
   print(Tren)
   while (Delay < 0.1):
     Num += 1 
@@ -167,12 +197,12 @@ def quay_so():
       Num = 1
     if (Delay < 0.1):
       if (Num < 10):
-        sys.stdout.write("\r    ║ -> \033[1;33m0"+str(Num)+" \033[1;32m<- ║")
+        sys.stdout.write(f"\r    ║ -> {yellow}0"+str(Num)+f" {green}<- ║")
       if (Num > 9):
-        sys.stdout.write("\r    ║ -> \033[1;33m"+str(Num)+" \033[1;32m<- ║")
+        sys.stdout.write(f"\r    ║ -> {yellow}"+str(Num)+f" {green}<- ║")
     sleep(Delay)
     Delay += 0.001
-  print("\n"+Duoi+"\033[1;37m")
+  print("\n"+Duoi+f"{white}")
   return Num
 def tra_quay_so():
   number, Tien_Choi = chon_so()
@@ -180,19 +210,19 @@ def tra_quay_so():
   if (number == 0 and Num % 2 == 0):
     print('Chúc Mừng Chiến Thắng: Chẵn')
     Tien_Choi = Tien_Choi
-    print("[+_+] +"+str(Tien_Choi))
+    print(f"[+_+] +{Tien_Choi:,}")
   elif (number == 1 and Num % 2 != 0):
     print('Chúc Mừng Chiến Thắng: Lẻ')
     Tien_Choi = Tien_Choi
-    print("[+_+] +"+str(Tien_Choi))
+    print(f"[+_+] +{Tien_Choi:,}")
   elif (number == 0 and Num % 2 != 0):
     print('Chúc May Mắn Lần Sau: Lẻ')
     Tien_Choi = -(Tien_Choi)
-    print("[-_-]",Tien_Choi)
+    print(f"[-_-] {Tien_Choi:,}")
   elif (number == 1 and Num % 2 == 0):
     print('Chúc May Mắn Lần Sau: Chẵn')
     Tien_Choi = -(Tien_Choi)
-    print("[-_-]",Tien_Choi)
+    print(f"[-_-] {Tien_Choi:,}")
   else:
     print("LỖI !!")
   change_money(Tien_Choi)
@@ -201,48 +231,54 @@ def tra_quay_so():
 def mine_coin():
   clear()
   show_mine_coin()
-  Nblock = int(input("Nhập Số Block Đào:\033[1;35m "))
-  print("\033[1;37m")
+  Nblock = int(input(f"Nhập Số Block Đào:{pink} "))
+  print(f"{white}")
   coin_list = [200, 400, 600, 800, 1000, 1200, 400, 1400, 200,1600, 1800, 200, 2000]
   ssr = 1
   for _ in range(Nblock):
     blockchain = random.randint(10,50)
     num = 0
-    hard = random.randint(1500,2500)
+    hard = random.randint(3000,3500)
     for i in range(blockchain*hard):
       num += 1 
       if (num < 10):
-        sys.stdout.write("\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: 00000"+str(num))
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: 00000"+str(num))
       elif (num < 100):
-        sys.stdout.write("\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: 0000"+str(num))
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: 0000"+str(num))
       elif (num < 1000):
-        sys.stdout.write("\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: 000"+str(num))
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: 000"+str(num))
       elif (num < 10000):
-        sys.stdout.write("\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: 00"+str(num))
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: 00"+str(num))
       elif (num < 100000):
-        sys.stdout.write("\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: 0"+str(num))
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: 0"+str(num))
       elif (num < 1000000):
-        sys.stdout.write(f"\r[\033[1;31m "+str(ssr)+" \033[1;37m] Mine: "+str(num))
-      sleep(0)
+        sys.stdout.write(f"\r[{red} "+str(ssr)+f" {white}] Mine: "+str(num))
+      #sleep(0)
     ssr += 1
-    Xu_mine = random.choice(coin_list)
+    xu_mine = random.choice(coin_list)
+    change_money(xu_mine)
     formatted_time = time_set()
-    print("\n[\033[1;32m"+str(formatted_time)+"\033[1;37m] +"+str(Xu_mine)+" \033[1;33mXu\033[1;37m")
+    with open(file, 'r') as f:
+      data = json.load(f)
+    money = data[0]["money"]
+    if (xu_mine >= 1000):
+      print(f"\n[{green}"+str(formatted_time)+f"{white}] +"+str(xu_mine)+f" {yellow}Xu{white} | Tổng: "+str(money)+f" {yellow}Xu{xu}")
+    elif (xu_mine < 1000):
+      print(f"\n[{green}"+str(formatted_time)+f"{white}] +"+str(xu_mine)+f" {yellow} Xu{white} | Tổng: "+str(money)+f" {yellow}Xu{xu}")
     print("")
   yes_no_mine_coin()
 def add_money():
   clear()
-  hien_money()
-  addc = int(input("NHẬP COIN+: "))
+  show_account()
+  addc = int(input(f"{blue2}NHẬP XU+:{white} "))
   change_money(addc)
-  hien_money()
+  show_account()
   animation_load()
   ChonS()
 def cls_data():
   clear()
   show_cls_data()
-  print("XOÁ DỮ LIỆU: 'Y'  |  THOÁT: 'N'")
-  
+  print(f"XOÁ DỮ LIỆU: '{red}Y{white}'  |  THOÁT: '{blue}N{white}'")
   delete_account = input('CHỌN (Y/n): ')
   if delete_account.lower() == 'y':
     print("Success Delete Account")
@@ -268,13 +304,13 @@ def ChonS():
     pass
   elif int(Chon) == 0:
     clear()
-    account()
+    show_account()
     exit()
   elif int(Chon) == 57:
     add_money()
   else:
-    animation_load()
     print("Lựa Chọn Không Hợp Lệ")
+    animation_load()
     ChonS()
 dang_ky()
 ChonS()
