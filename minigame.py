@@ -202,7 +202,7 @@ def quay_so():
         sys.stdout.write(f"\r    ║ -> {yellow}"+str(Num)+f" {green}<- ║")
     sleep(Delay)
     Delay += 0.001
-  print("\n"+Duoi+f"{white}")
+  print(f"\n{Duoi}{white}")
   return Num
 def tra_quay_so():
   number, Tien_Choi = chon_so()
