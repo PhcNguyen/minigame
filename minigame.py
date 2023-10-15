@@ -1,12 +1,19 @@
-import random, os, json, sys, datetime
+import random
+import os
+import json
+import sys
+import datetime
 from time import sleep
-
 he_so = 3
 file = "account.json"
-green = "\033[1;32m"; yellow = "\033[1;33m"
-white = "\033[1;37m"; red = "\033[1;31m"
-blue = "\033[1;34m"; pink = "\033[1;35m"
-grey = "\033[1;30m"; blue2 = "\033[1;36m"
+green = "\033[1;32m"
+yellow = "\033[1;33m"
+white = "\033[1;37m"
+red = "\033[1;31m"
+blue = "\033[1;34m"
+pink = "\033[1;35m"
+grey = "\033[1;30m"
+blue2 = "\033[1;36m"
 green2 = "\033[0;32m"
 def show_banner():
   banner=f"""
