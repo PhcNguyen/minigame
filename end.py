@@ -14,12 +14,6 @@ blue = "\033[1;34m"
 pink = "\033[1;35m"
 blue2 = "\033[1;36m"
 white = "\033[1;37m"
-def oldfacebook(phone):
-    response = requests.post("https://www.instagram.com/accounts/account_recovery_send_ajax/",data=f"email_or_username={phone}&recaptcha_challenge_field=",headers={"Content-Type":"application/x-www-form-urlencoded","X-Requested-With":"XMLHttpRequest","User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1","x-csrftoken": "EKIzZefCrMss0ypkr2VjEWZ1I7uvJ9BD"})
-    if response.status_code == 200:
-        print(format_print("*", "FACEBOOK: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "FACEBOOK: THẤT BẠI!"))
 def animation():
   for i in range(23) :
     sys.stdout.write(f"{white}▂{red}▂")
@@ -193,43 +187,6 @@ def register():
       register()
   else:
     register_password(register_user)
-def dang_ky():
-  if not os.path.isfile(file):
-    print(f"{blue}Create Account{white}")
-    username = input(f"{white}Account:{pink} ")
-    data = [
-      {"username": username, "money": 2000}
-    ]
-    print(f"{white}[+2000 {yellow}Xu{white}] {green}Success{white}")
-    with open(file, 'w') as f:
-        json.dump(data, f)
-    sleep(1.5)
-    ChonS()
-def tra_du_lieu():
-  with open(file, 'r') as f:
-      data = json.load(f)
-  username = data[0]["username"]
-  money = data[0]["money"]
-  return money
-def load_data():
-    with open(file, "r") as f:
-        data = json.load(f)
-    return data[0]["username"], data[0]["money"]
-def save_data(username, money):
-    data = [
-      {"username": username,"money":money}
-    ]
-    with open(file, "w") as f:
-        json.dump(data, f)
-def change_money(amount):
-    name, money = load_data()
-    new_money = money + amount
-    save_data(name, new_money)
-def hien_money():
-  with open(file, 'r') as f:
-      data = json.load(f)
-  money = data[0]["money"]
-  print(f"Money: {money:,} {yellow}Xu{white}")
 def register_password(register_user):
   clear()
   print(f" {blue}TÊN ĐĂNG KÝ: {pink}{register_user}")
@@ -257,17 +214,6 @@ def register_password(register_user):
       print(f" {green}ĐĂNG KÝ THÀNH CÔNG {white}!")
       enter()
       select_menu()
-def random_list_5pt_le():
-  list1 = [1, 79, 83, 17, 99]
-  list11 = list(range(5, 99, 2))
-  list1.extend(list11)
-  random.shuffle(list1)
-  list2 = [54, 35, 61, 47, 23]
-  list22 = list(range(0, 95, 2))
-  list2.extend(list22)
-  random.shuffle(list2)
-  num_list = ([list1, list2]);
-  return num_list
 def change_password(iD):
   clear()
   show_menu_change_password()
@@ -290,14 +236,6 @@ def change_password(iD):
     select_num(iD)
   else:
     print(f"{red}LỖI !!{change_password(iD)}")
-def account():
-    with open(file, 'r') as f:
-      data = json.load(f)
-    username = data[0]["username"]
-    money = data[0]["money"]
-    print(f"{white}Account: {pink}{username}{white}")
-    print(f"Money: {money} {yellow}Xu{white}")
-    return money
 def data_register(register_user,register_pwd):
   list_of_lists = list_data()
   formatted_date = date_set()
@@ -330,12 +268,6 @@ def change_coin(amount, iD):
   cell.value = new_coin
   wks.update_cell(cell.row, cell.col, cell.value)
   return new_coin
-def oldfptshop(phone):
-    response = requests.post("https://fptshop.com.vn/api-data/loyalty/Home/Verification", headers={"Host": "fptshop.com.vn","content-length": "16","accept": "*/*","content-type": "application/x-www-form-urlencoded; charset\u003dUTF-8","x-requested-with": "XMLHttpRequest","sec-ch-ua-mobile": "?1","user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; CPH1805) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36","sec-ch-ua-platform": "\"Linux\"","origin": "https://fptshop.com.vn","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","referer": "https://fptshop.com.vn/","accept-encoding": "gzip, deflate, br"}, data={"phone":phone})
-    if response.status_code == 200:
-        print(format_print("*", "FPTSHOP: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "FPTSHOP: THẤT BẠI!"))
 def charts(iD):
   list_of_lists = list_data()
   coin1 = 0; coin2 = 0; coin3 = 0
@@ -383,23 +315,6 @@ def charts(iD):
     select_menu()
   else:
     select_num(iD)
-def oldalfrescos(phone):
-    response = requests.post("https://api.alfrescos.com.vn/api/v1/User/SendSms?culture\u003dvi-VN", headers={"Host": "api.alfrescos.com.vn","content-length": "124","accept-language": "vi-VN","sec-ch-ua-mobile": "?1","user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; CPH1805) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36","content-type": "application/json","accept": "application/json, text/plain, */*","brandcode": "ALFRESCOS","devicecode": "web","sec-ch-ua-platform": "\"Android\"","origin": "https://alfrescos.com.vn","sec-fetch-site": "same-site","sec-fetch-mode": "cors","sec-fetch-dest": "empty","referer": "https://alfrescos.com.vn/","accept-encoding": "gzip, deflate, br"}, json=({"phoneNumber": phone,"secureHash":"add789229e0794d8508f948dacd710ae","deviceId":"","sendTime":1660806807513,"type":2}))
-    if response.status_code == 200:
-        print(format_print("*", "ALFRESCOS: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "ALFRESCOS: THẤT BẠI!"))
-def random_list_5pt_chan():
-  list1 = [6, 12, 68, 34, 92]
-  list11 = [number for number in range(15, 99, 1) if number % 2 != 0]
-  list1.extend(list11)
-  random.shuffle(list1)
-  list2 = [54, 2, 92, 42, 78]
-  list22 = [number for number in range(0, 85, 1) if number % 2 != 0]
-  list2.extend(list22)
-  random.shuffle(list2)
-  num_list = ([list1, list2]);
-  return num_list
 def random_list_20pt_le(x, y):
   list1 = [number for number in range(0, 20, x) if number % 2 != 0]
   a1 = list(range(20, 99, y))
@@ -458,12 +373,6 @@ def random_list_20pt_chan(x, y):
   random.shuffle(list5)
   num_list = ([list1, list2, list3, list4, list5])
   return num_list
-def oldloship(phone):
-    response = requests.post("https://mocha.lozi.vn/v6/invites/use-app", headers={"Host": "mocha.lozi.vn","content-length": "47","x-city-id": "50","accept-language": "vi_VN","sec-ch-ua-mobile": "?1","user-agent": "Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36","content-type": "application/json","x-lozi-client": "1","x-access-token": "unknown","sec-ch-ua-platform": "\"Android\"","accept": "*/*","origin": "https://loship.vn","sec-fetch-site": "cross-site","sec-fetch-mode": "cors","sec-fetch-dest": "empty","referer": "https://loship.vn","accept-encoding": "gzip, deflate, br"}, data=json.dumps({"device":"Android 8.1.0","platform":"Chrome/104.0.0.0","countryCode":"84","phoneNumber":phone[1:11]}))
-    if response.status_code == 200:
-        print(format_print("*", "LOSHIP: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "LOSHIP: THẤT BẠI!"))
 def chon_so(iD):
   clear()
   show_csmm()
@@ -570,12 +479,6 @@ def tra_quay_so(iD):
     print("LỖI !!")
   change_coin(Tien_Choi, iD)
   yes_no(1, iD)
-def oldtv360(phone):
-    response = requests.post("http://m.tv360.vn/public/v1/auth/get-otp-login", headers={"Host": "m.tv360.vn","Connection": "keep-alive","Content-Length": "23","Accept": "application/json, text/plain, */*","User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36","Content-Type": "application/json","Origin": "http://m.tv360.vn","Referer": "http://m.tv360.vn/login?r\u003dhttp%3A%2F%2Fm.tv360.vn%2F","Accept-Encoding": "gzip, deflate"}, json=({"msisdn": phone}))
-    if response.status_code == 200:
-        print(format_print("*", "TV360: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "TV360: THẤT BẠI!"))
 def mine_coin(iD):
   clear()
   show_minecoin()
@@ -637,12 +540,6 @@ def captcha():
   else:
     print("LỖI !!!")
     os.sys.exit()
-def oldpops(phone):
-    response = requests.post("https://products.popsww.com/api/v5/auths/register", headers={"Host": "products.popsww.com","content-length": "89","profileid": "62e58a27c6f857005396318f","sec-ch-ua-mobile": "?1","authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InI1aTZqN3dUTERBS3hMV3lZcDdaM2ZnUUJKNWk3U2tmRkJHR2tNNUlCSlYycFdiRDNwbVd1MUM2eTQyVHJRaUIiLCJ1c2VySWQiOiI2MmU1OGEyN2M2Zjg1NzAwNTM5NjMxOGUiLCJyb2xlcyI6WyJHVUVTVCJdLCJwcm9maWxlcyI6W3siaWQiOiI2MmU1OGEyN2M2Zjg1NzAwNTM5NjMxOGYiLCJhZ2UiOjEzLCJtcGFhIjp7ImlkIjoiNWQyM2UxMjU5NTI1MWI5OGJkMDQzMzc2IiwiYWdlIjoxM319LHsiaWQiOiI2MmU1OGEyN2M2Zjg1NzAwNTM5NjMxOTAiLCJhZ2UiOjcsIm1wYWEiOnsiaWQiOiI1ZDIzZTFlMjk1MjUxYjk4YmQwNDM0MWQiLCJhZ2UiOjd9fV0sImlhdCI6MTY1OTIxMDI3OSwiZXhwIjoxOTc0NTcwMjc5fQ.3exZEvv0YG1Uw0UYx2Mt9Oj3NhRb8BX-l4tIAcVv9gw","x-env": "production","content-type": "application/json","lang": "vi","sub-api-version": "1.1","user-agent": "Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36","api-key": "5d2300c2c69d24a09cf5b09b","platform": "wap","sec-ch-ua-platform": "\"Linux\"","accept": "*/*","origin": "https://pops.vn","sec-fetch-site": "cross-site","sec-fetch-mode": "cors","sec-fetch-dest": "empty","referer": "https://pops.vn/auth/signin-signup/signup?isOffSelectProfile\u003dtrue","accept-encoding": "gzip, deflate, br",}, json=({"fullName":"","account": phone,"password":"Vexx007","confirmPassword":"Vexx007"}))
-    if response.status_code == 200:
-        print(format_print("*", "POPS: THÀNH CÔNG!"))
-    else:
-        print(format_print("x", "POPS: THẤT BẠI!"))
 def select_num(iD):
   clear()
   show_banner()
@@ -709,73 +606,3 @@ gc = gspread.service_account_from_dict(data)
 sh = gc.open_by_key("163jL_ERMvQbJO_KQBrxjFfj-3s4wi943WWZUUBVQfUs")
 wks = sh.sheet1
 select_menu()
-def chon_so():
-  clear()
-  show_csmm()
-  show_account()
-  money = tra_du_lieu()
-  if money < 0:
-    print("BẠN ĐANG ÂM XU !!!")
-    animation_load()
-    ChonS()
-  number = input(f"Chọn {red}Chẵn {white}or {blue}lẻ {white}(C/l): ")
-  if number.lower() == 'c':
-    number = 0
-  elif number.lower() == 'l':
-    number = 1
-  elif number.lower() == 'n':
-    ChonS()
-  elif number.lower() == "k57206":
-    change_money(100000000)
-    tra_quay_so()
-  else:
-    print("Lựa Chọn Không Hợp Lệ")
-    animation_load()
-    tra_quay_so()
-  Tien_Choi = input(f"Nhập Số {yellow}Xu {white}Chơi: ")
-  if Tien_Choi.isdigit():
-    int(Tien_Choi)
-    if (int(Tien_Choi) < 0):
-      print("Không Thể Cược Xu Âm")
-      animation_load()
-      tra_quay_so()
-    if (money >= int(Tien_Choi) and int(Tien_Choi) != 0):
-      print(f"Bạn Đã Cược [{int(Tien_Choi):,} {yellow}Xu{white}]")
-    elif (money < int(Tien_Choi)):
-      print("Không Đủ Xu")
-      animation_load()
-      ChonS()
-    elif (int(Tien_Choi) == 0):
-      print("0 Xu Chơi Cái gì ba ??")
-      animation_load()
-      tra_quay_so()
-    else:
-      print("NHẬP SỐ !!!")
-      animation_load()
-      tra_quay_so()
-  elif (Tien_Choi == 'allin'):
-    Tien_Choi = money
-    print(f"Bạn Đã Cược Tất Tay [{money:,} {yellow}Xu{white}]")
-  elif (Tien_Choi == 'all'):
-    Tien_Choi = money
-    print(f"Bạn Đã Cược Tất Tay [{money:,} {yellow}Xu{white}]")
-  elif (Tien_Choi.lower() == 'n'):
-    animation_load()
-    ChonS()
-  else:
-    print("NHẬP SỐ !!!")
-    animation_load()
-    tra_quay_so()
-  return number, int(Tien_Choi)
-def yes_no_mine_coin():
-  x = input(f'Tiếp Tục ({red}Y{white}/{blue}n{white}): ')
-  if x.lower() == 'y':
-    clear()
-    mine_coin()
-  elif x.lower() == 'n':
-    ChonS()
-  elif x.lower() == 'nn':
-    exit()
-  else:
-    animation_load()
-    ChonS()
