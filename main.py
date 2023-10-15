@@ -20,11 +20,11 @@ def animation():
     sleep(0)
   print(f"{white}")
 def animation_load():
-  v1 =f"\r{green2}[-->    ]"
-  v2 =f"\r{green2}[ -->   ]"
-  v3 =f"\r{green2}[  -->  ]"
-  v4 =f"\r{green2}[   --> ]"
-  v5 =f"\r{green2}[    -->]"
+  v1 =f"\r{green}[-->    ]"
+  v2 =f"\r{green}[ -->   ]"
+  v3 =f"\r{green}[  -->  ]"
+  v4 =f"\r{green}[   --> ]"
+  v5 =f"\r{green}[    -->]"
   ss = 3
   for i in range (ss) :
 	  sys.stdout.write(v1+str(ss));sleep(0.125)
@@ -292,6 +292,7 @@ def change_coin(amount, iD):
 def charts(iD):
   list_of_lists = list_data()
   coin1 = 0; coin2 = 0; coin3 = 0
+  user1 = 1; user2 = 2; user3 = 3
   for iD1 in range(len(list_of_lists)):
     coin_value = list_of_lists[iD1][2]
     if coin_value == 'Coin':
