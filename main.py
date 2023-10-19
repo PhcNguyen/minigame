@@ -249,14 +249,6 @@ def change_password(iD):
     select_num(iD)
   else:
     print(f"{red}LỖI !!{change_password(iD)}")
-def account():
-    with open(file, 'r') as f:
-      data = json.load(f)
-    username = data[0]["username"]
-    money = data[0]["money"]
-    print(f"{white}Account: {pink}{username}{white}")
-    print(f"Money: {money} {yellow}Xu{white}")
-    return money
 def data_register(register_user,register_pwd):
   list_of_lists = list_data()
   formatted_date = date_set()
