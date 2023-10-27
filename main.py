@@ -6,6 +6,7 @@ import random
 import secrets
 import string
 from time import sleep
+
 grey = "\033[1;30m"
 red = "\033[1;31m"
 green = "\033[1;32m"
@@ -14,6 +15,7 @@ blue = "\033[1;34m"
 pink = "\033[1;35m"
 blue2 = "\033[1;36m"
 white = "\033[1;37m"
+
 def animation():
   for i in range(23) :
     sys.stdout.write(f"{white}▂{red}▂")
