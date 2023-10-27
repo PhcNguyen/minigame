@@ -97,6 +97,7 @@ def show_csmm():
   """
   print(csmm)
   animation()
+  
 def show_minecoin():
   coin=f"""
     {blue}╔════════════════════════════╗
